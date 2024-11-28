@@ -1,0 +1,154 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Cart-Checkout{% endblock %}
+
+{% block content %}
+  
+<div class="wrapper">
+
+    <!--== Start Preloader Content ==-->
+    <div class="preloader-wrap">
+      <div class="preloader">
+        <span class="dot"></span>
+        <div class="dots">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+    <!--== End Preloader Content ==-->
+  
+    <!--== Start Header Wrapper ==-->
+    {% include "../components/header.html" %}
+    <!--== End Header Wrapper ==-->
+    
+    <main class="main-content">
+      <!--== Start Page Title Area ==-->
+      <section class="page-title-area">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-lg-12 m-auto">
+              <div class="page-title-content text-center">
+                <h2 class="title">My Account</h2>
+                <div class="bread-crumbs"><a href="index.html"> Home </a><span class="breadcrumb-sep"> // </span><span class="active"> My Account</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!--== End Page Title Area ==-->
+  
+      <!--== Start Login Wrapper ==-->
+      <section class="login-register-area">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-5 login-register-border">
+              <div class="login-register-content">
+                <div class="login-register-title mb-30">
+                  <h2>Login</h2>
+                  <p>Welcome back! Please enter your username and password to login. </p>
+                </div>
+                <div class="login-register-style login-register-pr">
+                  <form action="#" method="post">
+                    <div class="login-register-input">
+                      <input type="text" name="user-name" placeholder="Username or email address">
+                    </div>
+                    <div class="login-register-input">
+                      <input type="password" name="user-password" placeholder="Password">
+                      <div class="forgot">
+                        <a href="#">Forgot?</a>
+                      </div>
+                    </div>
+                    <div class="remember-me-btn">
+                      <input type="checkbox">
+                      <label>Remember me</label>
+                    </div>
+                    <div class="btn-style-3">
+                      <button class="btn" onclick="window.location.href='my-account.html'" type="button">Login</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-7">
+              <div class="login-register-content login-register-pl">
+                <div class="login-register-title mb-30">
+                    <h2>Register</h2>
+                    <p>Create new account today to reap the benefits of a personalized shopping experience. </p>
+                </div>
+                <div class="login-register-style">
+                  <form action="#" method="post">
+                    <div class="login-register-input">
+                      <input type="text" name="user-name" placeholder="Username">
+                    </div>
+                    <div class="login-register-input">
+                      <input type="text" name="user-name" placeholder="E-mail address">
+                    </div>
+                    <div class="login-register-input">
+                      <input type="password" name="user-password" placeholder="Password">
+                    </div>
+                    <div class="login-register-paragraph">
+                      <p>Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our <a href="#">privacy policy.</a></p>
+                    </div>
+                    <div class="btn-style-3">
+                      <button class="btn" onclick="window.location.href='my-account.html'" type="button">Register</button>
+                    </div>
+                  </form>
+                  <div class="register-benefits">
+                    <h3>Sign up today and you will be able to :</h3>
+                    <p>The Loke Buyer Protection has you covered from click to delivery. Sign up <br>or sign in and you will be able to:</p>
+                    <ul>
+                      <li><i class="pe-7s-check icons"></i> Speed your way through checkout</li>
+                      <li><i class="pe-7s-check icons"></i> Track your orders easily</li>
+                      <li><i class="pe-7s-check icons"></i> Keep a record of all your purchases</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!--== End Login Wrapper ==-->
+    </main>
+  
+    <!--== Start Footer Area Wrapper ==-->
+    {% include "../components/footer.html" %}
+    <!--== End Footer Area Wrapper ==-->
+
+  
+    <!--== Start Product Quick View ==-->
+
+    <!--== End Product Quick View ==-->
+  
+    <!--== Start Aside Search Menu ==-->
+    <div class="search-box-wrapper">
+      <div class="search-box-content-inner">
+        <div class="search-box-form-wrap">
+          <div class="search-note">
+            <p>Start typing and press Enter to search</p>
+          </div>
+          <form action="#" method="post">
+            <div class="search-form position-relative">
+              <label for="search-input" class="sr-only">Search</label>
+              <input type="search" class="form-control" placeholder="Search" id="search-input">
+              <button class="search-button"><i class="pe-7s-search"></i></button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <!--== End Aside Search Menu ==-->
+      <a href="javascript:;" class="search-close"><i class="pe-7s-close"></i></a>
+    </div>
+    <!--== End Aside Search Menu ==-->
+  
+    <!--== Start Sidebar Cart Menu ==-->
+    {% include '../components/sidebarcart.html' %} 
+    <!--== End Sidebar Cart Menu ==-->
+  
+    <!--== Start Side Menu ==-->
+    <!--== End Side Menu ==-->
+  </div>
+
+{% endblock %}

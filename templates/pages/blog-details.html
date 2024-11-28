@@ -1,0 +1,192 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Cart-Shop{% endblock %}
+
+{% block content %}
+<div class="wrapper page-shop-wrapper">
+
+  <!--== Start Header Wrapper ==-->
+  {% include "../components/header.html" %}
+  <!--== End Header Wrapper ==-->
+
+  <main class="main-content">
+    <!--== Start Page Title Area ==-->
+    <section class="page-title-area">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-12 m-auto">
+                    <div class="page-title-content text-center">
+                        <h2 class="title">Blog</h2>
+                        <div class="bread-crumbs">
+                            <a href="{% url 'index' %}"> Home </a>
+                            <span class="breadcrumb-sep"> // </span>
+                            <span class="active"> Blog</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--== End Page Title Area ==-->
+
+    <!--== Start Blog Area Wrapper ==-->
+    <section class="blog-details-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="post-details-content">
+                        <div class="post-details-body">
+                            <div class="thumb">
+                                <img class="w-100" src="{% static 'img/blog/details/8.jpg' %}" alt="Image" />
+                            </div>
+                            <div class="content">
+                                <div class="meta">
+                                    By, <a class="author" href="{% url 'blog' %}">June Cha</a>
+                                    <span class="dots"></span>
+                                    <span class="post-date">25 May, 2021</span>
+                                </div>
+                                <h4 class="title">Lorem ipsum dolor sit amet, consecte adipisicing elit sed doeiusm</h4>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+                                <div class="blockquote-area">
+                                    <blockquote class="blockquote-style">
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit eiusmod tempor incididunt</p>
+                                        <div class="icon">
+                                            <img src="{% static 'img/icons/4.png' %}" alt="Icon">
+                                        </div>
+                                    </blockquote>
+                                </div>
+                                <p>Lorem ipsum dolor sit amet...</p>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="thumb-inner">
+                                            <img class="w-100" src="{% static 'img/blog/details/6.jpg' %}" alt="Image" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="thumb-inner mb-sm-30">
+                                            <img class="w-100" src="{% static 'img/blog/details/7.jpg' %}" alt="Image" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <p>Lorem ipsum dolor sit amet...</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comment-area">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="comment-view-area">
+                                    <h2 class="title">3 Comments</h2>
+                                    <div class="comment-content">
+                                        <div class="single-comment">
+                                            <div class="author-info">
+                                                <div class="thumb">
+                                                    <img src="{% static 'img/blog/details/1.png' %}" alt="Image">
+                                                </div>
+                                                <div class="author-details border-bottom">
+                                                    <ul>
+                                                        <li>Aidyn Cody <span> - 25 May, 2121</span></li>
+                                                    </ul>
+                                                    <p>Lorem ipsum dolor sit amet...</p>
+                                                    <a class="btn-theme" href="#/">Reply</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="comment-content comment-content-style2">
+                                        <div class="single-comment">
+                                            <div class="author-info">
+                                                <div class="thumb">
+                                                    <img src="{% static 'img/blog/details/2.png' %}" alt="Image">
+                                                </div>
+                                                <div class="author-details">
+                                                    <ul>
+                                                        <li>Jivan Cody <span> - 25 May, 2121</span></li>
+                                                    </ul>
+                                                    <p>Lorem ipsum dolor sit amet...</p>
+                                                    <a class="btn-theme" href="#/">Reply</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="comment-content">
+                                        <div class="single-comment">
+                                            <div class="author-info">
+                                                <div class="thumb pt-38">
+                                                    <img src="{% static 'img/blog/details/3.png' %}" alt="Image">
+                                                </div>
+                                                <div class="author-details border-top pt-37">
+                                                    <ul>
+                                                        <li>Rose Cody <span> - 25 May, 2121</span></li>
+                                                    </ul>
+                                                    <p>Lorem ipsum dolor sit amet...</p>
+                                                    <a class="btn-theme" href="#/">Reply</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="comment-form-wrap mb-lg-0">
+                                    <form class="comment-form-wrapper" id="comment-form" action="#" method="post">
+                                        {% csrf_token %}
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="section-title m-0">
+                                                    <h2 class="title">Leave a Comment</h2>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <input class="form-control" type="text" name="name" placeholder="Name *">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <input class="form-control" type="email" name="email" placeholder="Email *">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <input class="form-control" type="text" name="subject" placeholder="Subject (Optional)">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <textarea class="form-control" name="message" placeholder="Message"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <button class="btn btn-theme" type="submit">Send a Comment</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--== End Blog Area Wrapper ==-->
+</main>
+
+
+  
+
+  <!--== Start Footer Area Wrapper ==-->
+  {% include "../components/footer.html" %}
+  <!--== End Footer Area Wrapper ==-->
+
+  {% include '../components/sidebarcart.html' %} 
+  
+</div>
+{% endblock %}

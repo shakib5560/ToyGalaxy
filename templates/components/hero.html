@@ -1,0 +1,42 @@
+{% load static %}
+
+<section class="home-slider-area slider-default">
+    <div class="home-slider-content">
+      <div class="swiper-container home-slider-container">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <!-- Start Slide Item -->
+            <div class="home-slider-item">
+              <div class="thumb-one bg-img" data-bg-img="https://i.ibb.co.com/4Vc0J28/1.png"></div>
+              <div class="slider-content-area">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <div class="content">
+                        <div class="inner-content">
+                          <h2>Best Kids Store & Online Shop</h2>
+                          <p>Give The Gift Of Your Children Everyday</p>
+                          <div style="display: flex; gap: 10px;">
+                            <a href="{% url "shop" %}" class="btn-theme">Shop This Now</a>
+                            <a style="background-color: #FCD24F; color: black;" href="{% url "blog" %}" class="btn-theme">Blog</a>
+                          </div>
+                          {% comment %} {% url 'shop' %} {% endcomment %}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <img class="thumb-two" src="{% static 'assets/img/slider/2.png' %}" alt="Image">
+                <img class="thumb-three" src="{% static 'assets/img/slider/3.png' %}" alt="Image">
+                <img class="thumb-four" src="{% static 'assets/img/photos/3.png' %}" alt="Image">
+              </div>
+              <div class="shape-top bg-img" data-bg-img="{% static 'assets/img/photos/1.png' %}"></div>
+              <div class="shape-bottom bg-img" data-bg-img="{% static 'assets/img/photos/2.png' %}"></div>
+            </div>
+            <!-- End Slide Item -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  

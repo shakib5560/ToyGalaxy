@@ -1,0 +1,71 @@
+
+{% load static %}
+<header class="header-wrapper">
+    <div class="header-top">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-sm-5 col-md-4 col-lg-6">
+            <div class="header-info-left">
+              <p>Free Returns and Free Shipping</p>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-7 col-md-8 col-lg-6 sm-pl-0 xs-pl-15 header-top-right">
+            <div class="header-info">
+              <a href="tel://+00123456789"><i class="fa fa-phone"></i> +8801771-659336</a>
+              <a href="mailto://dev.shakib@hotmail.com"><i class="fa fa-envelope"></i>dev.shakib@hotmail.com</a>
+              <a href="{% url "register" %}"><i class="fa fa-user"></i> Account</a>
+              {% comment %} {% url 'login_register' %} {% endcomment %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="header-middle">
+      <div class="container">
+        <div class="row row-gutter-0 align-items-center">
+          <div class="col-12">
+            <div class="header-align">
+              <div class="header-align-left">
+                <div class="header-logo-area">
+                  <a href="{% url 'index' %}">
+                    <img class="logo-main" src="{% static 'assets/img/logo.png' %}" alt="Logo">
+                    <img class="logo-light" src="{% static 'assets/img/logo-light.png' %}" alt="Logo">
+                  </a>
+                </div>
+              </div>
+              <div class="header-align-center">
+                <div class="header-search-box">
+                  <form action="#" method="post">
+                    <div class="form-input-item">
+                      <label for="search" class="sr-only">Search Everything</label>
+                      <input type="text" id="search" placeholder="Search Everything">
+                      <button type="submit" class="btn-src">
+                        <i class="pe-7s-search"></i>
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <div class="header-align-right">
+                <div class="header-action-area">
+                  <div class="header-action-wishlist">
+                    <button class="btn-wishlist" onclick="window.location.href='#'">
+                        {% comment %} {% url 'shop_wishlist' %} {% endcomment %}
+                        <a href="{% url "wishlist" %}"><i class="pe-7s-like"></i></a>
+                    </button>
+                  </div>
+                  <div class="header-action-cart">
+                    <button class="btn-cart cart-icon">
+                      <span class="cart-count">01</span>
+                      <i class="pe-7s-shopbag"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  

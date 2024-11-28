@@ -1,0 +1,55 @@
+{% load static %}
+    
+    <!--== Start Sidebar Cart Menu ==-->
+    <aside class="sidebar-cart-modal">
+        <div class="sidebar-cart-inner">
+          <div class="sidebar-cart-content">
+            <a class="cart-close" href="javascript:void(0);"><i class="pe-7s-close"></i></a>
+            <div class="sidebar-cart-all">
+              <div class="cart-header">
+                <h3>Shopping Cart</h3>
+                <div class="close-style-wrap">
+                  <span class="close-style close-style-width-1 cart-close"></span>
+                </div>
+              </div>
+              <div class="cart-content cart-content-padding">
+                <ul>
+                  <li class="single-product-cart">
+                    <div class="cart-img">
+                      <a href="shop-single-product.html"><img src="assets/img/shop/details/nav1.jpg" alt=""></a>
+                    </div>
+                    <div class="cart-title">
+                      <h4><a href="shop-single-product.html">Jigsaw Puzzles For Kids </a></h4>
+                      <span> 1 × <span class="price"> $12.00 </span></span>
+                    </div>
+                    <div class="cart-delete">
+                      <a href="#/"><i class="pe-7s-trash icons"></i></a>
+                    </div>
+                  </li>
+                  <li class="single-product-cart">
+                    <div class="cart-img">
+                      <a href="shop-single-product.html"><img src="assets/img/shop/details/nav2.jpg" alt=""></a>
+                    </div>
+                    <div class="cart-title">
+                      <h4><a href="shop-single-product.html">Bruder Toys Mini Ships </a></h4>
+                      <span> 1 × <span class="price"> $59.00 </span></span>
+                    </div>
+                    <div class="cart-delete">
+                      <a href="#/"><i class="pe-7s-trash icons"></i></a>
+                    </div>
+                  </li>
+                </ul>
+                <div class="cart-total">
+                  <h4>Subtotal: <span>$278.90</span></h4>
+                </div>
+                <div class="cart-checkout-btn">
+                  <a class="cart-btn" href="{% url "cart" %}">view cart</a>
+                  <a class="checkout-btn" href="{% url "checkout" %}">checkout</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+      <div class="sidebar-cart-overlay"></div>
+      <!--== End Sidebar Cart Menu ==-->

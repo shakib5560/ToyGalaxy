@@ -1,0 +1,39 @@
+{% load static %}
+<div  class="col-lg-3 col-md-4 col-sm-6">
+    <!-- Start Product Item -->
+    <div class="product-item">
+      <div class="product-thumb">
+        <img src="{% static 'assets/img/shop/1.png' %}" alt="Image">
+        <div class="product-action">
+          <a class="action-quick-view" href="#"><i class="ion-ios-cart"></i></a>
+          <a class="action-quick-view" href="javascript:void(0)"><i class="ion-arrow-expand"></i></a>
+          <a class="action-quick-view" href="#"><i class="ion-heart"></i></a>
+          <a class="action-quick-view" href="#"><i class="ion-shuffle"></i></a>
+        </div>
+
+        {% comment %} {% url 'cart' %}
+        {% url 'wishlist' %}
+        {% url 'compare' %} {% endcomment %}
+        {% comment %} {% url 'product_detail' 'funskool-teddy' %} {% endcomment %}
+
+
+      </div>
+      <div class="product-info">
+        <div class="rating">
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span>
+        </div>
+        <h4 class="title">
+          <a href="#">Funskool Teddy</a>
+        </h4>
+        <div class="prices">
+          <span class="price">$190.12</span>
+        </div>
+      </div>
+    </div>
+    <!-- End Product Item -->
+  </div>
+  

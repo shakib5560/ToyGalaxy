@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Cart-Shop{% endblock %}
+
+{% block content %}
+<div class="wrapper page-shop-wrapper">
+
+  <!--== Start Header Wrapper ==-->
+  {% include "../components/header.html" %}
+  <!--== End Header Wrapper ==-->
+
+  <main class="main-content">
+    <!--== Start Page Title Area ==-->
+    <section class="page-title-area">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-12 m-auto">
+            <div class="page-title-content text-center">
+              <h2 class="title">Blog</h2>
+              <div class="bread-crumbs">
+                <a href="index.html"> Home </a><span class="breadcrumb-sep"> // </span><span class="active"> Blog</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--== End Page Title Area ==-->
+  
+    <!--== Start Blog Area Wrapper ==-->
+    <section class="blog-area blog-grid-area">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="blog-content-area">
+              <div class="row">
+
+                {% for x in my_range %}
+                <div class="col-sm-6 col-md-4">
+                  <!--== Start Blog Post Item ==-->
+                  <div class="post-item">
+                    <div class="thumb">
+                      <a href="blog-details.html"><img src="{% static 'assets/img/blog/1.jpg' %}" alt="Image"></a>
+                    </div>
+                    <div class="content">
+                      <div class="meta">By, <a class="author" href="blog.html">June Cha </a><span class="dots"></span><span class="post-date">25 May, 2121</span></div>
+                      <h4 class="title">
+                        <a href="blog-details.html">Baby Planet's toys makes learning so easy</a>
+                      </h4>
+                      <a class="btn-theme" href="{% url "blog-details" %}">Read More</a>
+                    </div>
+                  </div>
+                  <!--== End Blog Post Item ==-->
+                </div>
+                {% endfor %}
+
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="pagination-area">
+                    <nav>
+                      <ul class="page-numbers">
+                        <li>
+                          <a class="page-number active" href="blog.html">1</a>
+                        </li>
+                        <li>
+                          <a class="page-number" href="blog.html">2</a>
+                        </li>
+                        <li>
+                          <a class="page-number" href="blog.html">3</a>
+                        </li>
+                        <li>
+                          <a class="page-number next" href="blog.html">
+                            <i class="fa fa-angle-right"></i>
+                          </a>
+                        </li>
+                      </ul>
+                    </nav>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--== End Blog Area Wrapper ==-->
+  </main>
+  
+
+  <!--== Start Footer Area Wrapper ==-->
+  {% include "../components/footer.html" %}
+  <!--== End Footer Area Wrapper ==-->
+
+  {% include '../components/sidebarcart.html' %} 
+  
+</div>
+{% endblock %}
