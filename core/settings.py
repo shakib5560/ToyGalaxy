@@ -76,14 +76,25 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
+#Media Files
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+
+#Setup PostgreSQL
+#Git Ignore ITS
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'toygalaxy',
+        'USER': 'toygalaxy',
+        'PASSWORD': '556020',
+        'HOST': 'localhost',  # or the hostname of your database server
+        'PORT': '5432',       # default PostgreSQL port
     }
 }
 

@@ -13,7 +13,11 @@
             <div class="header-info">
               <a href="tel://+00123456789"><i class="fa fa-phone"></i> +8801771-659336</a>
               <a href="mailto://dev.shakib@hotmail.com"><i class="fa fa-envelope"></i>dev.shakib@hotmail.com</a>
-              <a href="{% url "register" %}"><i class="fa fa-user"></i> Account</a>
+
+              <a href="{% if user.is_authenticated %}{% url 'myaccount' %}{% else %}{% url 'register' %}{% endif %}">
+                <i class="fa fa-user"></i> Account
+              </a>
+            
               {% comment %} {% url 'login_register' %} {% endcomment %}
             </div>
           </div>

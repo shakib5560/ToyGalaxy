@@ -1,7 +1,10 @@
 from django.shortcuts import render
+from .models import OfferImage
 
 def home(request):
-    return render(request, 'pages/index.html')
+    # Retrieve the most recent image uploaded
+    latest_image = OfferImage.objects.order_by('-id').first()  # Order by ID to get the latest one
+    return render(request, 'pages/index.html', {'latest_image': latest_image})
 # Create your views here.
 
 def shop(request):
