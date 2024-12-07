@@ -24,3 +24,6 @@ def wishlist(request):
 
 def blog_details(request):
     return render(request, 'pages/blog-details.html')
+
+def show_product(request):
+    return render(request, 'pages/show_product.html', {'my_range': range(1, 20)})    

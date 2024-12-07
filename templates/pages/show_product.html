@@ -1,0 +1,216 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Cart-Shop{% endblock %}
+
+{% block content %}
+<div class="wrapper page-shop-wrapper">
+
+  <!--== Start Header Wrapper ==-->
+  {% include "../components/header.html" %}
+  <!--== End Header Wrapper ==-->
+  
+  <main class="main-content">
+    <!--== Start Page Title Area ==-->
+    <section class="page-title-area">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-12 m-auto">
+            <div class="page-title-content text-center">
+              <h2 class="title">Product</h2>
+              <div class="bread-crumbs">
+                <a href="{% static 'index.html' %}">Home</a>
+                <span class="breadcrumb-sep">//</span>
+                <span class="active">Product</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--== End Page Title Area ==-->
+
+    <!--== Start Shop Area ==-->
+    <section class="product-single-area">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 col-md-8 offset-md-2 col-lg-6 offset-lg-0">
+            <div class="single-product-slider">
+              <div class="single-product-thumb">
+                <div class="swiper-container single-product-thumb-slider">
+                  <div class="swiper-wrapper">
+                    <div class="swiper-slide zoom zoom-hover">
+                      <div class="thumb-item">
+                        <a class="lightbox-image" data-fancybox="gallery" href="{% static 'assets/img/shop/details/1.jpg' %}">
+                          <img src="{% static 'assets/img/shop/details/1.jpg' %}" alt="Product Image">
+                        </a>
+                      </div>
+                    </div>
+                    <div class="swiper-slide zoom zoom-hover">
+                      <div class="thumb-item">
+                        <a class="lightbox-image" data-fancybox="gallery" href="{% static 'assets/img/shop/details/2.jpg' %}">
+                          <img src="{% static 'assets/img/shop/details/2.jpg' %}" alt="Product Image">
+                        </a>
+                      </div>
+                    </div>
+                    <div class="swiper-slide zoom zoom-hover">
+                      <div class="thumb-item">
+                        <a class="lightbox-image" data-fancybox="gallery" href="{% static 'assets/img/shop/details/3.jpg' %}">
+                          <img src="{% static 'assets/img/shop/details/3.jpg' %}" alt="Product Image">
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="single-product-nav">
+                <div class="swiper-container single-product-nav-slider">
+                  <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                      <div class="nav-item">
+                        <img src="{% static 'assets/img/shop/details/nav1.jpg' %}" alt="Thumbnail Image">
+                      </div>
+                    </div>
+                    <div class="swiper-slide">
+                      <div class="nav-item">
+                        <img src="{% static 'assets/img/shop/details/nav2.jpg' %}" alt="Thumbnail Image">
+                      </div>
+                    </div>
+                    <div class="swiper-slide">
+                      <div class="nav-item">
+                        <img src="{% static 'assets/img/shop/details/nav3.jpg' %}" alt="Thumbnail Image">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="single-product-info">
+              <h4 class="title">Jigsaw Puzzles For Kids</h4>
+              <div class="prices">
+                <span class="price">$120.59</span>
+              </div>
+              <div class="product-rating">
+                <div class="rating">
+                  <span class="fa fa-star"></span>
+                  <span class="fa fa-star"></span>
+                  <span class="fa fa-star"></span>
+                  <span class="fa fa-star"></span>
+                  <span class="fa fa-star"></span>
+                </div>
+                <div class="review">
+                  <a href="#">(5 Customer Reviews)</a>
+                </div>
+              </div>
+              <div class="single-product-featured">
+                <ul>
+                  <li><i class="fa fa-check"></i> Free Shipping</li>
+                  <li><i class="fa fa-check"></i> Support 24/7</li>
+                  <li><i class="fa fa-check"></i> Money Return</li>
+                </ul>
+              </div>
+              <p class="product-desc">Lorem ipsum dolor sit amet...</p>
+              <div class="quick-product-action">
+                <div class="action-top">
+                  <div class="pro-qty">
+                    <input type="text" id="quantity" title="Quantity" value="01">
+                  </div>
+                  <button class="btn btn-theme">Add to Cart</button>
+                  <a class="btn-wishlist" href="{% static 'shop-wishlist.html' %}">Add to Wishlist</a>
+                </div>
+              </div>
+              <div class="widget">
+                <h3 class="title">SKU:</h3>
+                <div class="widget-tags">
+                  <span>Ch-256xl</span>
+                </div>
+              </div>
+              <div class="widget">
+                <h3 class="title">Categories:</h3>
+                <div class="widget-tags">
+                  <a href="{% static 'blog.html' %}">Toys</a>
+                  <a href="{% static 'blog.html' %}">Dress</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="product-description-review">
+                <!-- Tabs and Reviews Code Here -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+    </section>
+    <!--== End Shop Area ==-->
+
+    
+
+    <!--== Start Related Products Area ==-->
+    <section class="product-slider-area related-product-area">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 m-auto">
+            <div class="section-title text-center">
+              <h2 class="title">Related Products</h2>
+              <div class="desc">
+                <p>Lorem ipsum dolor sit amet...</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <div class="product-tab1-slider">
+
+              {% for data in my_range %}
+              <div class="slide-item">
+                <div class="product-item">
+                  <div class="product-thumb">
+                    <img src="{% static 'assets/img/shop/1.png' %}" alt="Image">
+                    <div class="product-action">
+                      <a class="action-quick-view" href="shop-cart.html"><i class="ion-ios-cart"></i></a>
+                      <a class="action-quick-view" href="javascript:void(0)"><i class="ion-arrow-expand"></i></a>
+                      <a class="action-quick-view" href="shop-wishlist.html"><i class="ion-heart"></i></a>
+                      <a class="action-quick-view" href="shop-compare.html"><i class="ion-shuffle"></i></a>
+                    </div>
+                  </div>
+                  <div class="product-info">
+                    <div class="rating">
+                      <span class="fa fa-star"></span>
+                      <span class="fa fa-star"></span>
+                      <span class="fa fa-star"></span>
+                      <span class="fa fa-star"></span>
+                      <span class="fa fa-star"></span>
+                    </div>
+                    <h4 class="title"><a href="shop-single-product.html">Funskool Teddy</a></h4>
+                    <div class="prices">
+                      <span class="price">$190.12</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--== End Related Products Area ==-->
+  </main>
+
+  <!--== Start Footer Area Wrapper ==-->
+  {% include "../components/footer.html" %}
+  <!--== End Footer Area Wrapper ==-->
+  
+  {% include '../components/sidebarcart.html' %} 
+  {% include '../components/productview.html' %}
+  
+</div>
+{% endblock %}
