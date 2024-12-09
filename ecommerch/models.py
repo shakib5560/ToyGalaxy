@@ -2,8 +2,6 @@ from django.db import models
 from django.core.files.base import ContentFile
 from shortuuid.django_fields import ShortUUIDField
 from django.utils import timezone
-from django.utils.text import slugify
-from django_ckeditor_5.fields import CKEditor5Field
 from django.core.validators import MaxValueValidator, MinValueValidator
 from ckeditor.fields import RichTextField
 
@@ -176,14 +174,15 @@ class VarientItem(models.Model):
 class GalaryImage(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='product_images/', blank=True, null=True)
-    alt_tag = models.CharField(max_length=500, null=True, blank=True) 
+    alt_tag = models.CharField(max_length=500, null=True, blank=True)
 
     def defaultalttag(self):
-        if not self.alttag:
-           self.alttag = self.product.name
+        if not self.alt_tag and self.product:
+            self.alt_tag = self.product.name
 
     def __str__(self):
-        return f'GalaryImage: {self.galary_id}'
+        return f'GalaryImage: {self.alt_tag or "Unnamed"}'
+
     
 
 class Cart(models.Model):
