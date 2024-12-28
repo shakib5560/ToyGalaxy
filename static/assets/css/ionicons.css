@@ -1486,3 +1486,10 @@ font-style: normal; }
 .ion-wrench:before { content: "\f2ba"; }
 
 .ion-xbox:before { content: "\f30c"; }
+
+.bordered-star {
+  font-size: 24px; /* Adjust size as needed */
+  color: transparent;
+  -webkit-text-stroke: 1px black; /* Adjust stroke width and color */
+}
+

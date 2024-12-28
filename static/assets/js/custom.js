@@ -40,16 +40,101 @@
     searchwrapper.removeClass('show');
   });
 
-  // Product Quick View JS
-  var quickViewModal = $(".product-quick-view-modal");
-  $(".product-action .action-quick-view").on('click', function() {
-    quickViewModal.addClass('active');
-    $("body").addClass('fix');
-  });
-  $(".btn-close, .canvas-overlay").on('click', function() {
-    quickViewModal.removeClass('active');
-    $("body").removeClass('fix');
-  });
+
+
+
+// Product Quick View JS
+var quickViewModal = $(".product-quick-view-modal");
+
+$(".product-action .action-quick-view").on("click", function () {
+  const slug = $(this).data("slug"); // Get the slug from the clicked button
+  const url = `/product-details/${slug}/`;
+
+  // Fetch product details
+  fetch(url)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      // Update product image
+      const productImage = data.image || "assets/img/shop/default.jpg";
+      $(".product-quick-view-modal .thumb img").attr("src", productImage);
+
+      // Update product name
+      $(".product-quick-view-modal .title").text(data.name);
+
+      // Update product price and offer
+      const priceText = data.offer ? `$${data.offer}` : `$${data.price}`;
+      $(".product-quick-view-modal .price").text(priceText);
+
+      // Update product description
+      $(".product-quick-view-modal .product-desc").text(data.description || "No description available.");
+
+      // Update SKU
+      $(".product-quick-view-modal .widget .sku").text(data.sku || "N/A");
+
+      // Update category
+      $(".product-quick-view-modal .widget-tags .categories").text(data.category || "Uncategorized");
+
+      // Update ratings
+      const ratingContainer = $(".product-quick-view-modal .rating");
+      ratingContainer.empty(); // Clear existing stars
+      if (data.average_rating) {
+        for (let i = 1; i <= 5; i++) {
+          const starClass = i <= data.average_rating ? "fa fa-star" : "fa fa-star-o";
+          ratingContainer.append(`<span class="${starClass}"></span>`);
+        }
+      } else {
+        for (let i = 1; i <= 5; i++) {
+          ratingContainer.append('<span class="fa fa-star-o"></span>');
+        }
+      }
+
+      // Update support and money return status
+      const featuresList = $(".product-quick-view-modal .single-product-featured ul");
+      featuresList.empty();
+      if (data.support_24_7) {
+        featuresList.append('<li><i class="fa fa-check"></i> Support 24/7</li>');
+      }
+      if (data.money_return) {
+        featuresList.append('<li><i class="fa fa-check"></i> Money Return</li>');
+      }
+      if (data.delivery) {
+        featuresList.append(`<li><i class="fa fa-check"></i>${data.delivery} Delivery</li>`);
+      }      
+
+      // Show modal
+      quickViewModal.addClass("active");
+      $("body").addClass("fix");
+    })
+    .catch((error) => {
+      console.error("Error fetching product details:", error);
+      alert("Unable to load product details. Please try again later.");
+    });
+});
+
+// Close modal on close button or overlay click
+$(".btn-close, .canvas-overlay").on("click", function () {
+  quickViewModal.removeClass("active");
+  $("body").removeClass("fix");
+});
+
+
+
+// Close modal
+$(".btn-close, .canvas-overlay").on("click", function () {
+  quickViewModal.removeClass("active");
+  $("body").removeClass("fix");
+});
+
+// Close modal
+$(".btn-close, .canvas-overlay").on("click", function () {
+  quickViewModal.removeClass("active");
+  $("body").removeClass("fix");
+});
 
   // Sidebar Cart JS
   var sidebarCartModal = $(".sidebar-cart-modal");

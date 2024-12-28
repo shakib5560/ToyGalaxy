@@ -5,7 +5,7 @@ from django.utils import timezone
 from django.utils.text import slugify
 from django_ckeditor_5.fields import CKEditor5Field
 from django.core.validators import MaxValueValidator, MinValueValidator
-from ckeditor.fields import RichTextField
+from django.db.models import Avg
 
 from a_users import models as user_models
 
@@ -111,8 +111,8 @@ class Product(models.Model):
 
      
     #Others
-    image = models.ImageField(upload_to='product_images/', blank=True, null=True)
-    description = RichTextField(max_length=2000, null=True, blank=True)
+    image = models.ImageField(upload_to='product_images/')
+    description = models.TextField(max_length=2000, null=True, blank=True)
     Delivery = models.CharField(choices=[('free', 'Free Delivery'), ('standard', 'Standard Delivery'), ('qualified', 'Qualified Delivery')], default='standard', max_length=500)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True)
     support_24_7 = models.BooleanField(default=True)
@@ -126,6 +126,13 @@ class Product(models.Model):
 
     def __str__(self):
         return f'Product: {self.name}'
+    
+    def average_rating(self):
+        result = reviews_product.objects.filter(product=self).aggregate(avg_rating=Avg('rating'))
+        return result['avg_rating'] or 0  # Return 0 if there are no ratings
+    
+    def reviews(self):
+        return reviews_product.objects.filter(product=self)
 
     
     class Meta:
@@ -349,6 +356,9 @@ class reviews_product(models.Model):
 
     def __str__(self):
         return f"Review for {self.product.name} by {self.user.username}"
+    
+    class Meta:
+        verbose_name_plural = "Reviews"
     
 
 class setdelevaryfees(models.Model):

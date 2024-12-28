@@ -2,49 +2,26 @@
 <section class="category-area product-category1-area" data-aos="fade-up" data-aos-duration="1000">
     <div class="container">
       <div class="row category-items1">
+        
+        {% for data in categorys %}
         <div class="col-sm-6 col-md-4">
           <div class="category-item">
             <div class="thumb thumb-style1">
-              <img src="{% static 'assets/img/category/1.png' %}" alt="Image">
+              <img  height="190" src="{{data.image.url}}" alt="Image">
               <div class="content">
                 <div class="contact-info">
-                  <h2 class="title">Baby Dress</h2>
+                  <h2 class="title">{{data.name}}</h2>
                   <h4 class="price">$32.00</h4>
                 </div>
-                <a class="btn-link" href="#">Shop Now</a>
+                <a class="btn-link" href="{% url 'shop' %}">Shop Now</a>
                 {% comment %} {% url 'shop' %} {% endcomment %}
               </div>
             </div>
           </div>
         </div>
-        <div class="col-sm-6 col-md-4">
-          <div class="category-item mt-xs-25">
-            <div class="thumb thumb-style2">
-              <img src="{% static 'assets/img/category/2.png' %}" alt="Image">
-              <div class="content">
-                <div class="contact-info">
-                  <h2 class="title">Baby Toys</h2>
-                  <h4 class="price">$25.00</h4>
-                </div>
-                <a class="btn-link" href="#">Shop Now</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-4">
-          <div class="category-item mt-sm-25">
-            <div class="thumb thumb-style3">
-              <img src="{% static 'assets/img/category/3.png' %}" alt="Image">
-              <div class="content">
-                <div class="contact-info">
-                  <h2 class="title">Teddy Bear</h2>
-                  <h4 class="price">$18.00</h4>
-                </div>
-                <a class="btn-link" href="#">Shop Now</a>
-              </div>
-            </div>
-          </div>
-        </div>
+        {% endfor %}
+
+
       </div>
     </div>
   </section>
