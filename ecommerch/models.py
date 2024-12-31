@@ -6,6 +6,7 @@ from django.utils.text import slugify
 from django_ckeditor_5.fields import CKEditor5Field
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db.models import Avg
+from decimal import Decimal
 
 from a_users import models as user_models
 
@@ -108,6 +109,7 @@ class Product(models.Model):
     price = models.DecimalField(decimal_places=2, max_digits=10, default=0.00, verbose_name='Sale Price', null=True, blank=True)
     offer = models.DecimalField(decimal_places=2, max_digits=10, default=0.00, verbose_name='Offer Price', null=True, blank=True)
     hidden_price = models.DecimalField(decimal_places=2, max_digits=10, default=0.00, verbose_name='Overall Price', null=True, blank=True)
+    information = models.TextField(null=True, blank=True)
 
      
     #Others
@@ -122,6 +124,7 @@ class Product(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     stock_quantity = models.PositiveIntegerField(default=1)
+    tags = models.CharField(max_length=100, null=True, blank=True)
 
 
     def __str__(self):
@@ -131,8 +134,15 @@ class Product(models.Model):
         result = reviews_product.objects.filter(product=self).aggregate(avg_rating=Avg('rating'))
         return result['avg_rating'] or 0  # Return 0 if there are no ratings
     
+    def offer_price(self):
+        return self.offer * Decimal('0.90') 
+    
     def reviews(self):
         return reviews_product.objects.filter(product=self)
+
+    def galary_images(self):
+        return GalaryImage.objects.filter(product=self)
+    
 
     
     class Meta:
@@ -190,7 +200,7 @@ class GalaryImage(models.Model):
            self.alttag = self.product.name
 
     def __str__(self):
-        return f'GalaryImage: {self.galary_id}'
+        return f'GalaryImage: {self.alt_tag}'
     
 
 class Cart(models.Model):

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from . import views
 
 urlpatterns = [
@@ -12,4 +12,5 @@ urlpatterns = [
     path('blog-details/', views.blog_details, name='blog-details'),
     path('show-product/', views.show_product, name='show-product'),
     path('product-details/<slug:slug>/', views.product_details_view, name='product_details'),
+    path('items/', include('productshandler.urls')),
 ]

@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'ecommerch',
     'a_users',
+    'productshandler',
 ]
 
 MIDDLEWARE = [

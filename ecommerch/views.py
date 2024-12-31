@@ -5,8 +5,6 @@ from django.http import JsonResponse
 from django.db.models import Q
 from django.db.models import Case, When
 from django.db import models
-from django.template.loader import render_to_string
-
 
 def home(request):
     # Fetch the latest 8 published products
@@ -32,30 +30,26 @@ def shop(request):
     categories = Category.objects.all()
     sort_by = request.GET.get('sort', 'created_at')  # Default sorting by created_at
 
-    # Apply sorting logic
+    # Apply sorting logic based on sort_by parameter
     if sort_by == 'offer':
-        products = Product.objects.filter(status='Published').order_by('offer')
+        products = Product.objects.filter(status='Published').order_by('offer')  # Low to high
     elif sort_by == 'delivery':
         products = Product.objects.filter(status='Published').order_by(
             Case(
-                When(Delivery='free', then=0),
+                When(Delivery='free', then=0),  # Prioritize free delivery
                 default=1,
                 output_field=models.IntegerField(),
             )
         )
     else:
-        products = Product.objects.filter(status='Published').order_by('-created_at')
-
-    # Handle AJAX request
-    if request.headers.get('x-requested-with') == 'XMLHttpRequest':  # AJAX request
-        products_html = render_to_string('components/products.html', {'products': products}, request)
-        return JsonResponse({'products_html': products_html})
+        products = Product.objects.filter(status='Published').order_by('-created_at')  # Default: Most recent
 
     context = {
         'categories': categories,
         'products': products,
         'sort_by': sort_by,
     }
+
     return render(request, 'pages/shop.html', context)
 
 

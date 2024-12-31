@@ -17,11 +17,7 @@
           <div class="col-lg-12 m-auto">
             <div class="page-title-content text-center">
               <h2 class="title">Product</h2>
-              <div class="bread-crumbs">
-                <a href="{% static 'index.html' %}">Home</a>
-                <span class="breadcrumb-sep">//</span>
-                <span class="active">Product</span>
-              </div>
+              <div class="bread-crumbs"><a href="index.html"> Home </a><span class="breadcrumb-sep"> // </span><span class="active"> Product</span></div>
             </div>
           </div>
         </div>
@@ -38,48 +34,49 @@
               <div class="single-product-thumb">
                 <div class="swiper-container single-product-thumb-slider">
                   <div class="swiper-wrapper">
+
+
                     <div class="swiper-slide zoom zoom-hover">
                       <div class="thumb-item">
-                        <a class="lightbox-image" data-fancybox="gallery" href="{% static 'assets/img/shop/details/1.jpg' %}">
-                          <img src="{% static 'assets/img/shop/details/1.jpg' %}" alt="Product Image">
+                        <a class="lightbox-image" data-fancybox="gallery" href="{{product.image.url}}">
+                          <img src="{{product.image.url}}" alt="Image-HasTech">
                         </a>
                       </div>
                     </div>
+
+                    {% for data in product.galary_images.all %}
                     <div class="swiper-slide zoom zoom-hover">
                       <div class="thumb-item">
-                        <a class="lightbox-image" data-fancybox="gallery" href="{% static 'assets/img/shop/details/2.jpg' %}">
-                          <img src="{% static 'assets/img/shop/details/2.jpg' %}" alt="Product Image">
+                        <a class="lightbox-image" data-fancybox="gallery" href="{{data.image.url}}">
+                          <img src="{{data.image.url}}" alt="Image-HasTech">
                         </a>
                       </div>
                     </div>
-                    <div class="swiper-slide zoom zoom-hover">
-                      <div class="thumb-item">
-                        <a class="lightbox-image" data-fancybox="gallery" href="{% static 'assets/img/shop/details/3.jpg' %}">
-                          <img src="{% static 'assets/img/shop/details/3.jpg' %}" alt="Product Image">
-                        </a>
-                      </div>
-                    </div>
+                    {% endfor %}
+
+                    
                   </div>
                 </div>
               </div>
               <div class="single-product-nav">
                 <div class="swiper-container single-product-nav-slider">
                   <div class="swiper-wrapper">
+
                     <div class="swiper-slide">
                       <div class="nav-item">
-                        <img src="{% static 'assets/img/shop/details/nav1.jpg' %}" alt="Thumbnail Image">
+                          <img src="{{ product.image.url }}" alt="Image-HasTech">
                       </div>
-                    </div>
+                  </div>
+
+                    {% for data in product.galary_images.all|slice:":2" %}
                     <div class="swiper-slide">
-                      <div class="nav-item">
-                        <img src="{% static 'assets/img/shop/details/nav2.jpg' %}" alt="Thumbnail Image">
-                      </div>
+                        <div class="nav-item">
+                            <img src="{{ data.image.url }}" alt="Image-HasTech">
+                        </div>
                     </div>
-                    <div class="swiper-slide">
-                      <div class="nav-item">
-                        <img src="{% static 'assets/img/shop/details/nav3.jpg' %}" alt="Thumbnail Image">
-                      </div>
-                    </div>
+                   {% endfor %}
+                
+            
                   </div>
                 </div>
               </div>
@@ -87,50 +84,111 @@
           </div>
           <div class="col-lg-6">
             <div class="single-product-info">
-              <h4 class="title">Jigsaw Puzzles For Kids</h4>
+              <h4 class="title">{{product.name}}</h4>
               <div class="prices">
-                <span class="price">$120.59</span>
+                <span class="price">{{product.offer}}</span>
               </div>
               <div class="product-rating">
                 <div class="rating">
-                  <span class="fa fa-star"></span>
-                  <span class="fa fa-star"></span>
-                  <span class="fa fa-star"></span>
-                  <span class="fa fa-star"></span>
-                  <span class="fa fa-star"></span>
-                </div>
+                  {% if product.average_rating >= 1 %}
+                      <span class="fa fa-star"></span>
+                  {% endif %}
+                  {% if product.average_rating >= 2 %}
+                      <span class="fa fa-star"></span>
+                  {% endif %}
+                  {% if product.average_rating >= 3 %}
+                      <span class="fa fa-star"></span>
+                  {% endif %}
+                  {% if product.average_rating >= 4 %}
+                      <span class="fa fa-star"></span>
+                  {% endif %}
+                  {% if product.average_rating >= 5 %}
+                      <span class="fa fa-star"></span>
+                  {% endif %}
+                  {% if not product.average_rating %}
+                      <span class="fa fa-star-o bordered-star"></span>
+                      <span class="fa fa-star-o bordered-star"></span>
+                      <span class="fa fa-star-o bordered-star"></span>
+                      <span class="fa fa-star-o bordered-star"></span>
+                      <span class="fa fa-star-o bordered-star"></span>
+                  {% endif %}
+              </div>
                 <div class="review">
-                  <a href="#">(5 Customer Reviews)</a>
+                  <a href="#/">( {{product.average_rating}} Customer Review )</a>
                 </div>
               </div>
               <div class="single-product-featured">
                 <ul>
-                  <li><i class="fa fa-check"></i> Free Shipping</li>
+                  <li><i class="fa fa-check"></i> {{product.Delivery}} Delevary</li>
                   <li><i class="fa fa-check"></i> Support 24/7</li>
                   <li><i class="fa fa-check"></i> Money Return</li>
                 </ul>
               </div>
-              <p class="product-desc">Lorem ipsum dolor sit amet...</p>
+             
+            {% comment %} Variant {% endcomment %}
+
+              <div class="group-product-list">
+                <span class="info-text">Buy this bundle and get off to <span class="text-primary">10%</span> of all prices.</span>
+                <table>
+                  <tbody>
+          
+                    {% for data in related_products|slice:":3" %}
+                    <tr>
+                      <td class="choose"><input type="checkbox"></td>
+                      <td class="quantity">1</td>
+                      <td class="thumb"><img src="{{data.image.url}}" alt="{{data.name}}"></td>
+                      <td class="title"><a href="http://127.0.0.1:8000/items/productdetails/{{data.slug}}/">{{data.name}}</a></td>
+                      <td class="price">
+                        <span class="pro-price">
+                          <span class="old">{{ data.offer }}</span>
+                          <span class="new">{{ data.offer_price }}</span> 
+                        </span>
+                      </td>                   
+                    </tr>
+                    {% endfor %}
+              
+                  </tbody>
+                </table>
+                <div class="info-text">Products are available in limited quantities.</div>
+              </div>
+
+
+              <p class="product-desc">{{ product.description|truncatechars:250 }}</p>
               <div class="quick-product-action">
                 <div class="action-top">
                   <div class="pro-qty">
-                    <input type="text" id="quantity" title="Quantity" value="01">
+                    <input type="text" id="quantity" title="Quantity" value="01" />
                   </div>
                   <button class="btn btn-theme">Add to Cart</button>
-                  <a class="btn-wishlist" href="{% static 'shop-wishlist.html' %}">Add to Wishlist</a>
+                  <a class="btn-wishlist" href="shop-wishlist.html">Add to Wishlist</a>
                 </div>
               </div>
               <div class="widget">
                 <h3 class="title">SKU:</h3>
                 <div class="widget-tags">
-                  <span>Ch-256xl</span>
+                  <span>{{product.sku}}</span>
                 </div>
               </div>
               <div class="widget">
                 <h3 class="title">Categories:</h3>
                 <div class="widget-tags">
-                  <a href="{% static 'blog.html' %}">Toys</a>
-                  <a href="{% static 'blog.html' %}">Dress</a>
+                  <a href="#">{{product.category.name}}</a>
+                </div>
+              </div>
+              <div class="widget">
+                <h3 class="title">Tag:</h3>
+                <div class="widget-tags">
+                  <a href="#">{{product.tags}}</a>
+                </div>
+              </div>
+              <div class="widget">
+                <h3 class="title">Share:</h3>
+                <div class="widget-tags widget-share">
+                  <span class="fa fa-facebook"></span>
+                  <span class="fa fa-dribbble"></span>
+                  <span class="fa fa-pinterest-p"></span>
+                  <span class="fa fa-twitter"></span>
+                  <span class="fa fa-linkedin"></span>
                 </div>
               </div>
             </div>
@@ -138,28 +196,186 @@
           <div class="row">
             <div class="col-lg-12">
               <div class="product-description-review">
-                <!-- Tabs and Reviews Code Here -->
+                <ul class="nav nav-tabs product-description-tab-menu" id="myTab" role="tablist">
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="product-aditional-tab" data-bs-toggle="tab" data-bs-target="#commentProduct" type="button" role="tab" aria-selected="false">Information</button>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="product-desc-tab" data-bs-toggle="tab" data-bs-target="#productDesc" type="button" role="tab" aria-controls="productDesc" aria-selected="true">Description</button>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="product-review-tab" data-bs-toggle="tab" data-bs-target="#productReview" type="button" role="tab" aria-controls="productReview" aria-selected="false">Avg. Reviews ({{product.average_rating}})</button>
+                  </li>
+                </ul>
+                <div class="tab-content product-description-tab-content" id="myTabContent">
+                  <div class="tab-pane fade" id="commentProduct" role="tabpanel" aria-labelledby="product-aditional-tab">
+                    <div class="product-desc">
+                      <p>{{product.information}}</p>
+                    </div>
+                  </div>
+                  <div class="tab-pane fade show active" id="productDesc" role="tabpanel" aria-labelledby="product-desc-tab">
+                    <div class="product-desc">
+                      <p>{{product.description}}</p>
+                    </div>
+                  </div>
+                  <div class="tab-pane fade" id="productReview" role="tabpanel" aria-labelledby="product-review-tab">
+                    <div class="product-review">
+                      <div class="review-header">
+                        <h4 class="title">Customer Reviews</h4>
+                        <div class="review-info">
+                          <ul class="review-rating">
+                            {% if product.average_rating >= 1 %}
+                            <span class="fa fa-star"></span>
+                        {% endif %}
+                        {% if product.average_rating >= 2 %}
+                            <span class="fa fa-star"></span>
+                        {% endif %}
+                        {% if product.average_rating >= 3 %}
+                            <span class="fa fa-star"></span>
+                        {% endif %}
+                        {% if product.average_rating >= 4 %}
+                            <span class="fa fa-star"></span>
+                        {% endif %}
+                        {% if product.average_rating >= 5 %}
+                            <span class="fa fa-star"></span>
+                        {% endif %}
+                        {% if not product.average_rating %}
+                            <span class="fa fa-star-o bordered-star"></span>
+                            <span class="fa fa-star-o bordered-star"></span>
+                            <span class="fa fa-star-o bordered-star"></span>
+                            <span class="fa fa-star-o bordered-star"></span>
+                            <span class="fa fa-star-o bordered-star"></span>
+                        {% endif %}
+                        
+                          </ul>
+                          <span class="review-caption">Overall {{product.average_rating}} review</span>
+                          <span class="review-write-btn">Write a review</span>
+                        </div>
+                      </div>
+                      <div class="product-review-form">
+                        <h4 class="title">Write a review</h4>
+                        <form action="#" method="post">
+                          <div class="review-form-content">
+                            <div class="row">
+                              <div class="col-md-12">
+                                <div class="form-group">
+                                  <label for="reviewFormName">Name</label>
+                                  <input class="form-control" id="reviewFormName" type="text" placeholder="Enter your name" required="">
+                                </div>
+                              </div>
+                              <div class="col-md-12">
+                                <div class="form-group">
+                                  <label for="reviewFormEmail">Email</label>
+                                  <input class="form-control" id="reviewFormEmail" type="email" placeholder="john.smith@example.com" required="">
+                                </div>
+                              </div>
+                              <div class="col-md-12">
+                                <div class="rating">
+                                  <span class="rating-title">Rating</span>
+                                  <span>
+                                    <a class="fa fa-star-o" href="#/"></a>
+                                    <a class="fa fa-star-o" href="#/"></a>
+                                    <a class="fa fa-star-o" href="#/"></a>
+                                    <a class="fa fa-star-o" href="#/"></a>
+                                    <a class="fa fa-star-o" href="#/"></a>
+                                  </span>
+                                </div>
+                              </div>
+                              <div class="col-md-12">
+                                <div class="form-group">
+                                  <label for="reviewReviewTitle">Review Title</label>
+                                  <input class="form-control" id="reviewReviewTitle" type="text" placeholder="Give your review a title" required="">
+                                </div>
+                              </div>
+                              <div class="col-md-12">
+                                <div class="form-group">
+                                  <label for="reviewFormTextarea">Body of Review <span>(1500)</span></label>
+                                  <textarea class="form-control textarea" id="reviewFormTextarea" name="comment" rows="7" placeholder="Write your comments here" required=""></textarea>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-12">
+                                <div class="form-group pull-right">
+                                  <button class="btn btn-theme" type="submit">Submit Review</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+
+                      <div class="review-content">
+                        {% for review in product.reviews %}
+                        <div class="review-item">
+                          <ul class="review-rating">
+                            
+                        {% if review.rating >= 1 %}
+                            <span class="fa fa-star"></span>
+                        {% endif %}
+                        {% if review.rating >= 2 %}
+                            <span class="fa fa-star
+                            "></span> 
+                        {% endif %}
+                        {% if review.rating >= 3 %}
+                            <span class="fa fa-star
+                            "></span>
+                        {% endif %}
+                        {% if review.rating >= 4 %}
+                            <span class="fa fa-star
+                            "></span>
+                        {% endif %}
+                        {% if review.rating >= 5 %}
+                            <span class="fa fa-star
+                            "></span>
+                        {% endif %}
+                        {% if not review.rating %}
+                            <span class="fa fa-star
+                            "></span>
+                            <span class="fa fa-star
+                            "></span>
+                            <span class="fa fa-star
+                            "></span>
+                            <span class="fa fa-star
+                            "></span>
+                            <span class="fa fa-star
+                            "></span>
+                        {% endif %}
+
+                          </ul>
+                          <h4 class="title">{{ review.user.username }}</h4>
+                          <h5 class="review-date">{{ review.created_at|date:"M d, Y" }}</h5>
+                          <p>{{ review.comment|default:"No comment provided." }}</p>
+                          <a class="review-report" href="#/">Report as Inappropriate</a>
+                        </div>
+                        {% empty %}
+                        <p>No reviews available for this product.</p>
+                        {% endfor %}
+                      </div>
+                      
+                      
+
+          
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-
-      
     </section>
     <!--== End Shop Area ==-->
 
-    
-
-    <!--== Start Related Products Area ==-->
+    <!--== Start Shop Area ==-->
     <section class="product-slider-area related-product-area">
       <div class="container">
         <div class="row">
           <div class="col-lg-6 m-auto">
             <div class="section-title text-center">
-              <h2 class="title">Related Products</h2>
+              <h2 class="title">Related Product</h2>
               <div class="desc">
-                <p>Lorem ipsum dolor sit amet...</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod incididunt ut labore et dolore magna aliqua.</p>
               </div>
             </div>
           </div>
@@ -167,42 +383,65 @@
         <div class="row">
           <div class="col-12">
             <div class="product-tab1-slider">
-
-              {% for data in my_range %}
+             
+              {% for data in related_products %}
+             
               <div class="slide-item">
+                <!-- Start Product Item -->
                 <div class="product-item">
                   <div class="product-thumb">
-                    <img src="{% static 'assets/img/shop/1.png' %}" alt="Image">
-                    <div class="product-action">
-                      <a class="action-quick-view" href="shop-cart.html"><i class="ion-ios-cart"></i></a>
-                      <a class="action-quick-view" href="javascript:void(0)"><i class="ion-arrow-expand"></i></a>
-                      <a class="action-quick-view" href="shop-wishlist.html"><i class="ion-heart"></i></a>
-                      <a class="action-quick-view" href="shop-compare.html"><i class="ion-shuffle"></i></a>
-                    </div>
+                      <img height="220" src="{{ data.image.url }}" alt="{{ data.name }}">
+                      <div class="product-action">
+                          <a class="action-quick-view" href="#"><i class="ion-ios-cart"></i></a>
+                          <a class="action-quick-view" data-slug="{{ data.slug }}" href="javascript:void(0)"><i class="ion-arrow-expand"></i></a>
+                          <a class="action-quick-view" href="#"><i class="ion-heart"></i></a>
+                          <a class="action-quick-view" href="#"><i class="ion-shuffle"></i></a>
+                      </div>
                   </div>
                   <div class="product-info">
                     <div class="rating">
-                      <span class="fa fa-star"></span>
-                      <span class="fa fa-star"></span>
-                      <span class="fa fa-star"></span>
-                      <span class="fa fa-star"></span>
-                      <span class="fa fa-star"></span>
+                        {% if data.average_rating >= 1 %}
+                            <span class="fa fa-star"></span>
+                        {% endif %}
+                        {% if data.average_rating >= 2 %}
+                            <span class="fa fa-star"></span>
+                        {% endif %}
+                        {% if data.average_rating >= 3 %}
+                            <span class="fa fa-star"></span>
+                        {% endif %}
+                        {% if data.average_rating >= 4 %}
+                            <span class="fa fa-star"></span>
+                        {% endif %}
+                        {% if data.average_rating >= 5 %}
+                            <span class="fa fa-star"></span>
+                        {% endif %}
+                        {% if not data.average_rating %}
+                            <span class="fa fa-star-o bordered-star"></span>
+                            <span class="fa fa-star-o bordered-star"></span>
+                            <span class="fa fa-star-o bordered-star"></span>
+                            <span class="fa fa-star-o bordered-star"></span>
+                            <span class="fa fa-star-o bordered-star"></span>
+                        {% endif %}
                     </div>
-                    <h4 class="title"><a href="shop-single-product.html">Funskool Teddy</a></h4>
-                    <div class="prices">
-                      <span class="price">$190.12</span>
-                    </div>
+                      <h4 class="title">
+                          <a href="{% url 'productdetails' slug=data.slug %}">{{ data.name|slice:":20" }}</a>
+                      </h4>
+                      <div class="prices">
+                          <span class="price">${{ data.offer }}</span>
+                      </div>
                   </div>
-                </div>
               </div>
-              {% endfor %}
-              
+                <!-- End Product Item -->
+             </div>
+
+             {% endfor %}
+
             </div>
           </div>
         </div>
       </div>
     </section>
-    <!--== End Related Products Area ==-->
+    <!--== End Shop Area ==-->
   </main>
 
   <!--== Start Footer Area Wrapper ==-->

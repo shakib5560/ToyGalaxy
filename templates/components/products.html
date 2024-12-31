@@ -37,7 +37,7 @@
             {% endif %}
         </div>
           <h4 class="title">
-              <a href="#">{{ data.name|slice:":20" }}</a>
+              <a href="{% url 'productdetails' slug=data.slug %}">{{ data.name|slice:":20" }}</a>
           </h4>
           <div class="prices">
               <span class="price">${{ data.offer }}</span>
