@@ -157,8 +157,8 @@
               <div class="quick-product-action">
                 <div class="action-top">
                   <div class="pro-qty">
-                    <input type="text" id="quantity" title="Quantity" value="01" />
-                  </div>
+                    <input type="text" id="quantity" title="Quantity" value="1" />
+                  </div>                  
                   <button class="btn btn-theme">Add to Cart</button>
                   <a class="btn-wishlist" href="shop-wishlist.html">Add to Wishlist</a>
                 </div>
@@ -204,7 +204,7 @@
                     <button class="nav-link active" id="product-desc-tab" data-bs-toggle="tab" data-bs-target="#productDesc" type="button" role="tab" aria-controls="productDesc" aria-selected="true">Description</button>
                   </li>
                   <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="product-review-tab" data-bs-toggle="tab" data-bs-target="#productReview" type="button" role="tab" aria-controls="productReview" aria-selected="false">Avg. Reviews ({{product.average_rating}})</button>
+                    <button class="nav-link" id="product-review-tab" data-bs-toggle="tab" data-bs-target="#productReview" type="button" role="tab" aria-controls="productReview" aria-selected="false"> Reviews ({{product.reviews.all.count|default:"0"}})</button>
                   </li>
                 </ul>
                 <div class="tab-content product-description-tab-content" id="myTabContent">
@@ -254,43 +254,27 @@
                       </div>
                       <div class="product-review-form">
                         <h4 class="title">Write a review</h4>
-                        <form action="#" method="post">
+
+
+                        <form action="{% url 'productdetails' product.slug %}" method="post">
+                          {% csrf_token %}
                           <div class="review-form-content">
                             <div class="row">
                               <div class="col-md-12">
-                                <div class="form-group">
-                                  <label for="reviewFormName">Name</label>
-                                  <input class="form-control" id="reviewFormName" type="text" placeholder="Enter your name" required="">
-                                </div>
-                              </div>
-                              <div class="col-md-12">
-                                <div class="form-group">
-                                  <label for="reviewFormEmail">Email</label>
-                                  <input class="form-control" id="reviewFormEmail" type="email" placeholder="john.smith@example.com" required="">
-                                </div>
-                              </div>
-                              <div class="col-md-12">
                                 <div class="rating">
                                   <span class="rating-title">Rating</span>
-                                  <span>
-                                    <a class="fa fa-star-o" href="#/"></a>
-                                    <a class="fa fa-star-o" href="#/"></a>
-                                    <a class="fa fa-star-o" href="#/"></a>
-                                    <a class="fa fa-star-o" href="#/"></a>
-                                    <a class="fa fa-star-o" href="#/"></a>
-                                  </span>
-                                </div>
-                              </div>
-                              <div class="col-md-12">
-                                <div class="form-group">
-                                  <label for="reviewReviewTitle">Review Title</label>
-                                  <input class="form-control" id="reviewReviewTitle" type="text" placeholder="Give your review a title" required="">
+                                  <select name="rating" class="form-control" required>
+                                    <option value="" disabled selected>Choose Rating</option>
+                                    {% for value, label in rating_choices %}
+                                    <option value="{{ value }}">{{ label }}</option>
+                                    {% endfor %}
+                                  </select>
                                 </div>
                               </div>
                               <div class="col-md-12">
                                 <div class="form-group">
                                   <label for="reviewFormTextarea">Body of Review <span>(1500)</span></label>
-                                  <textarea class="form-control textarea" id="reviewFormTextarea" name="comment" rows="7" placeholder="Write your comments here" required=""></textarea>
+                                  <textarea class="form-control textarea" id="reviewFormTextarea" name="comment" rows="7" placeholder="Write your comments here" required></textarea>
                                 </div>
                               </div>
                             </div>
@@ -303,6 +287,10 @@
                             </div>
                           </div>
                         </form>
+                        
+                        
+
+
                       </div>
 
                       <div class="review-content">
