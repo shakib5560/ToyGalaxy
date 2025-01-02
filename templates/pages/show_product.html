@@ -261,9 +261,9 @@
                           <div class="review-form-content">
                             <div class="row">
                               <div class="col-md-12">
-                                <div class="rating">
-                                  <span class="rating-title">Rating</span>
-                                  <select name="rating" class="form-control" required>
+                                <div class="rating form-group">
+                                  <label for="reviewFormTextarea"> Rating </label>
+                                  <select style="border-radius: 10px;" name="rating" class="form-control" required>
                                     <option value="" disabled selected>Choose Rating</option>
                                     {% for value, label in rating_choices %}
                                     <option value="{{ value }}">{{ label }}</option>

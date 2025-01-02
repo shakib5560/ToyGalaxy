@@ -5,15 +5,18 @@ from django.http import JsonResponse
 from django.db.models import Q
 from django.db.models import Case, When
 from django.db import models
+from blogs.models import Blog
 
 def home(request):
     # Fetch the latest 8 published products
     productdata = Product.objects.filter(status='Published').order_by('-id')[:16]
     categorys = Category.objects.order_by('-id')[:3]
+    blogs = Blog.objects.order_by('-id')[:3]
     
     context = {
         'products': productdata,
-        'categorys': categorys
+        'categorys': categorys,
+        'blogs': blogs,
 
     }
 
@@ -84,14 +87,9 @@ def cart(request):
 def checkout(request):
     return render(request, 'pages/shop-checkout.html')
 
-def blog(request):
-    return render(request, 'pages/blog.html', {'my_range': range(1, 20)})
-
 def wishlist(request):
     return render(request, 'pages/wishlist.html', {'my_range': range(1, 20)})
 
-def blog_details(request):
-    return render(request, 'pages/blog-details.html', )
 
 def show_product(request):
     return render(request, 'pages/show_product.html', {'my_range': range(1, 20)})    

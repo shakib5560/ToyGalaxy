@@ -584,6 +584,23 @@ $(".btn-close, .canvas-overlay").on("click", function () {
   }
   
   
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Select all alert elements
+    const alerts = document.querySelectorAll(".alert");
+
+    // Set a timeout to automatically hide each alert after 3 seconds
+    alerts.forEach((alert) => {
+        setTimeout(() => {
+            alert.classList.add("fade");
+            alert.addEventListener("transitionend", () => {
+                alert.remove();
+            });
+        }, 3000);
+    });
+});
+
+  
 /* ==========================================================================
    When document is loading, do
    ========================================================================== */

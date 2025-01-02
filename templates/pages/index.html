@@ -182,54 +182,13 @@
             </div>
           </div>
           <div class="row" data-aos="fade-up" data-aos-duration="1300">
-            <div class="col-lg-4 col-md-6 col-sm-6">
-              <!--== Start Blog Post Item ==-->
-              <div class="post-item">
-                <div class="thumb">
-                  <a href="blog-details.html"><img src="assets/img/blog/1.jpg" alt="Image"></a>
-                </div>
-                <div class="content">
-                  <div class="meta">By, <a class="author" href="blog.html">June Cha </a><span class="dots"></span><span class="post-date">25 May, 2121</span></div>
-                  <h4 class="title">
-                    <a href="blog-details.html">Baby Planet's toys makes learning so easy</a>
-                  </h4>
-                  <a class="btn-theme" href="blog-details.html">Read More</a>
-                </div>
-              </div>
-              <!--== End Blog Post Item ==-->
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-6">
-              <!--== Start Blog Post Item ==-->
-              <div class="post-item mt-xs-30">
-                <div class="thumb">
-                  <a href="blog-details.html"><img src="assets/img/blog/2.jpg" alt="Image"></a>
-                </div>
-                <div class="content">
-                  <div class="meta">By, <a class="author" href="blog.html">June Cha </a><span class="dots"></span><span class="post-date">July 24, 2022</span></div>
-                  <h4 class="title">
-                    <a href="blog-details.html">Mother revolves around her children</a>
-                  </h4>
-                  <a class="btn-theme" href="blog-details.html">Read More</a>
-                </div>
-              </div>
-              <!--== End Blog Post Item ==-->
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-6">
-              <!--== Start Blog Post Item ==-->
-              <div class="post-item mt-md-30">
-                <div class="thumb">
-                  <a href="blog-details.html"><img src="assets/img/blog/3.jpg" alt="Image"></a>
-                </div>
-                <div class="content">
-                  <div class="meta">By, <a class="author" href="blog.html">June Cha </a><span class="dots"></span><span class="post-date">January 28, 2022</span></div>
-                  <h4 class="title">
-                    <a href="blog-details.html">Learn while you grow toys Baby Planet</a>
-                  </h4>
-                  <a class="btn-theme" href="blog-details.html">Read More</a>
-                </div>
-              </div>
-              <!--== End Blog Post Item ==-->
-            </div>
+
+       
+          {% for data in blogs %}
+             {% include "../components/blogshot.html" %}
+          {% endfor %}  
+
+
           </div>
         </div>
       </section>

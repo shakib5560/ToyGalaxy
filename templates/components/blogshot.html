@@ -1,0 +1,29 @@
+{% load static %}
+<div class="col-lg-4 col-md-6 col-sm-6">
+    <!--== Start Blog Post Item ==-->
+    <div class="post-item mt-xs-30">
+
+
+      <div class="thumb">
+        {% if data.images %}
+            <a href="{% url 'blog-details' slug=data.slug %}">
+                <img height="250" src="{{ data.images.url }}" alt="{{data.title}}">
+            </a>
+        {% else %}
+            <a href="{% url 'blog-details' slug=data.slug %}">
+                <img height="250" src="https://imageresizer.furnituredealer.net/img/remote/images.furnituredealer.net/img/commonimages%2Fitem-placeholder.jpg?width=480&scale=both&trim.threshold=80&trim.percentpadding=15" alt="Default Image">
+            </a>
+        {% endif %}
+    </div>
+
+
+      <div class="content">
+        <div class="meta">By, <a class="author" href="#">{{data.user.username}} </a><span class="dots"></span><span class="post-date">{{data.date_posted}}</span></div>
+        <h4 class="title">
+          <a href="{% url 'blog-details' slug=data.slug %}">{{ data.title|slice:":30" }}...</a>
+        </h4>
+        <a class="btn-theme" href="{% url 'blog-details' slug=data.slug %}">Read More</a>
+      </div>
+    </div>
+    <!--== End Blog Post Item ==-->
+  </div>

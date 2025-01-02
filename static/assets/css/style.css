@@ -913,6 +913,34 @@ table p {
   color: #495057;
   opacity: 1;
 }
+
+#Allat 
+
+.messages {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 1050; /* Ensure it appears above other elements */
+  max-width: 400px;
+}
+
+.alert {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  animation: slide-in 0.5s ease-out;
+}
+
+@keyframes slide-in {
+  from {
+      transform: translateX(100%);
+      opacity: 0;
+  }
+  to {
+      transform: translateX(0);
+      opacity: 1;
+  }
+}
+
+
 .subscribe-form form .input-content input:focus {
   border: 2px solid #fcdcea;
 }

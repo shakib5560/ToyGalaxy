@@ -35,23 +35,8 @@
             <div class="blog-content-area">
               <div class="row">
 
-                {% for x in my_range %}
-                <div class="col-sm-6 col-md-4">
-                  <!--== Start Blog Post Item ==-->
-                  <div class="post-item">
-                    <div class="thumb">
-                      <a href="blog-details.html"><img src="{% static 'assets/img/blog/1.jpg' %}" alt="Image"></a>
-                    </div>
-                    <div class="content">
-                      <div class="meta">By, <a class="author" href="blog.html">June Cha </a><span class="dots"></span><span class="post-date">25 May, 2121</span></div>
-                      <h4 class="title">
-                        <a href="blog-details.html">Baby Planet's toys makes learning so easy</a>
-                      </h4>
-                      <a class="btn-theme" href="{% url "blog-details" %}">Read More</a>
-                    </div>
-                  </div>
-                  <!--== End Blog Post Item ==-->
-                </div>
+                {% for data in blogs %}
+                    {% include "../components/blogshot.html" %}
                 {% endfor %}
 
               </div>
