@@ -2,7 +2,7 @@ from django.contrib import admin
 
 # Register your models here.
 from django.contrib import admin
-from .models import Blog, comments, reply, tag, Subscribe
+from .models import Blog, comments, tag, Subscribe
 from django.utils.text import slugify
 from django.db.models import F
 
@@ -18,13 +18,17 @@ class BlogAdmin(admin.ModelAdmin):
             obj.slug = slugify(obj.title)  # Automatically set the slug based on the title
         super().save_model(request, obj, form, change)
 
+# admins.py
 class CommentsAdmin(admin.ModelAdmin):
-    list_display = ('blog', 'name', 'email', 'date_posted')
+    list_display = ('blog', 'name', 'email', 'date_posted', 'isApproved')  # Include 'isApproved' here
+    list_editable = ('isApproved',)  # Make 'isApproved' editable
     search_fields = ('name', 'email', 'content')
+    
+    def is_approved_display(self, obj):
+        return obj.isApproved
+    is_approved_display.boolean = True  # Optional, for boolean icons
+    is_approved_display.short_description = "Approved Status"  # Optional, custom display name
 
-class ReplyAdmin(admin.ModelAdmin):
-    list_display = ('comment', 'name', 'email', 'date_posted')
-    search_fields = ('name', 'email', 'content')
 
 class tagAdmin(admin.ModelAdmin):
     list_display = ('blog', 'title')
@@ -37,6 +41,5 @@ class SubscribeAdmin(admin.ModelAdmin):
 # Registering the models with custom admin interfaces
 admin.site.register(Blog, BlogAdmin)
 admin.site.register(comments, CommentsAdmin)
-admin.site.register(reply, ReplyAdmin)
 admin.site.register(tag, tagAdmin)
 admin.site.register(Subscribe, SubscribeAdmin)

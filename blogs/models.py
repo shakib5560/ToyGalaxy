@@ -25,16 +25,8 @@ class comments(models.Model):
     email = models.EmailField()
     content = models.TextField(max_length=1000, null=True, blank=True)
     date_posted = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return self.name
-    
-class reply(models.Model):
-    comment = models.ForeignKey(comments, on_delete=models.CASCADE)
-    name = models.CharField(max_length=100, null=True, blank=True)
-    email = models.EmailField()
-    content = models.TextField()
-    date_posted = models.DateTimeField(auto_now_add=True)
+    reply = models.TextField(max_length=1000, null=True, blank=True, default='Thank you for your comment. We will get back to you soon.')
+    isApproved = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name

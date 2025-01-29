@@ -40,7 +40,7 @@
                       </a>
                   {% else %}
                       <a href="">
-                          <img white='100%' src="https://imageresizer.furnituredealer.net/img/remote/images.furnituredealer.net/img/commonimages%2Fitem-placeholder.jpg?width=480&scale=both&trim.threshold=80&trim.percentpadding=15" alt="Default Image">
+                          <img white="100%" src="https://www.cbopc.com/wp-content/uploads/2021/01/no-image.jpg" alt="Default Image">
                       </a>
                   {% endif %}
               </div>
@@ -64,18 +64,19 @@
                 <div class="col-lg-12">
                   <div class="comment-view-area">
                     <h2 class="title">3 Comments</h2>
+                  
+                  {% for data in comment %}
                     <div class="comment-content">
                       <div class="single-comment">
                         <div class="author-info">
                           <div class="thumb">
-                            <img src="{% static 'assets/img/blog/details/1.png' %}" alt="Image">
+                            <img src="https://cdn3.iconfinder.com/data/icons/vector-icons-6/96/256-512.png" alt="Image">
                           </div>
                           <div class="author-details border-bottom">
                             <ul>
-                              <li>Aidyn Cody <span> - 25 May, 2121</span></li>
+                              <li>{{data.name}}<span style="margin-left: 15px;"> {{data.date_posted}}</span></li>
                             </ul>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididun ut labore et dolore magna aliqua.</p>
-                            <a class="btn-theme" href="#/">Reply</a>
+                            <p>{{data.content}}</p>
                           </div>
                         </div>
                       </div>
@@ -84,37 +85,25 @@
                       <div class="single-comment">
                         <div class="author-info">
                           <div class="thumb">
-                            <img src="{% static 'assets/img/blog/details/2.png' %}" alt="Image">
+                            <img src="https://www.shutterstock.com/image-vector/man-inscription-admin-icon-outline-600nw-1730974153.jpg" alt="Image">
                           </div>
                           <div class="author-details">
                             <ul>
-                              <li>Jivan Cody <span> - 25 May, 2121</span></li>
+                              <li>By Admin<span> Dev.Shakib </span></li>
                             </ul>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididun ut labore et dolore magna aliqua.</p>
-                            <a class="btn-theme" href="#/">Reply</a>
+                            <p>{{data.reply}}</p>
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div class="comment-content">
-                      <div class="single-comment">
-                        <div class="author-info">
-                          <div class="thumb pt-38">
-                            <img src="{% static 'assets/img/blog/details/3.png' %}" alt="Image">
-                          </div>
-                          <div class="author-details border-top pt-37">
-                            <ul>
-                              <li>Rose Cody <span> - 25 May, 2121</span></li>
-                            </ul>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididun ut labore et dolore magna aliqua.</p>
-                            <a class="btn-theme" href="#/">Reply</a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    {% endfor %}
+
                   </div>
                   <div class="comment-form-wrap">
-                    <form class="comment-form-wrapper" id="comment-form" action="https://whizthemes.com/mail-php/raju/arden/mail.php" method="post">
+
+                    <form class="comment-form-wrapper" id="comment-form" method="post">
+                      {% csrf_token %}
+                      <input type="hidden" name="comment" value="true">
                       <div class="row">
                         <div class="col-lg-12">
                           <div class="section-title m-0">
@@ -123,37 +112,30 @@
                         </div>
                       </div>
                       <div class="row">
-                        <div class="col-lg-12">
-                          <div class="row">
-                            <div class="col-md-6">
-                              <div class="form-group">
-                                <input class="form-control" type="text" placeholder="Name *">
-                              </div>
-                            </div>
-                            <div class="col-md-6">
-                              <div class="form-group">
-                                <input class="form-control" type="email" placeholder="Email *">
-                              </div>
-                            </div>
-                            <div class="col-md-12">
-                              <div class="form-group">
-                                <input class="form-control" type="text" placeholder="Subject (Optinal)">
-                              </div>
-                            </div>
-                            <div class="col-md-12">
-                              <div class="form-group">
-                                <textarea class="form-control" placeholder="Message"></textarea>
-                              </div>
-                            </div>
-                            <div class="col-md-12">
-                              <div class="form-group">
-                                <button class="btn btn-theme" type="submit">Send a Comment</button>
-                              </div>
-                            </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <input class="form-control" type="text" name="name" placeholder="Name *" required>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <input class="form-control" type="email" name="email" placeholder="Email *" required>
+                          </div>
+                        </div>
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <textarea class="form-control" name="content" placeholder="Message" required></textarea>
+                          </div>
+                        </div>
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <button class="btn btn-theme" type="submit">Send a Comment</button>
                           </div>
                         </div>
                       </div>
                     </form>
+                                      
+
                   </div>
                 </div>
               </div>
@@ -176,62 +158,30 @@
                   </div>
                 </div>
               </div>
-              <div class="widget-item widget-item2">
-                <div class="widget-title blog-post-title">
-                  <h3 class="title">Archives</h3>
-                </div>
-                <div class="widget-body">
-                  <div class="widget-archives">
-                    <ul>
-                      <li><a href="blog.html">January 2018</a></li>
-                      <li><a href="blog.html">February 2019</a></li>
-                      <li><a href="blog.html">March 2020</a></li>
-                      <li><a href="blog.html">April 2021</a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
               <div class="widget-item">
                 <div class="widget-title blog-post-title">
                   <h3 class="title">Recent Post</h3>
                 </div>
                 <div class="widget-body">
+                 {% for data in allblogs %}
                   <div class="widget-blog-post">
                     <div class="thumb">
-                      <a href="blog-details.html"><img src="{% static 'assets/img/blog/details/1.jpg' %}" alt="Image"></a>
-                    </div>
+                      {% if data.images %}
+                          <a href="{% url 'blog-details' slug=data.slug %}">
+                              <img height="60" width="90" src="{{ data.images.url }}" alt="{{data.title}}">
+                          </a>
+                      {% else %}
+                          <a href="{% url 'blog-details' slug=data.slug %}">
+                              <img height="60" width="90" src="https://imageresizer.furnituredealer.net/img/remote/images.furnituredealer.net/img/commonimages%2Fitem-placeholder.jpg?width=480&scale=both&trim.threshold=80&trim.percentpadding=15" alt="Default Image">
+                          </a>
+                      {% endif %}
+                  </div>
                     <div class="content">
-                      <span>25 May, 2121</span>
-                      <h4><a href="blog-details.html">Baby Planet's toys to makes learning easy</a></h4>
+                      <span>{{data.date_posted}}</span>
+                      <h4><a href="blog-details.html">{{data.title|slice:":20"}}</a></h4>
                     </div>
                   </div>
-                  <div class="widget-blog-post">
-                    <div class="thumb">
-                      <a href="blog-details.html"><img src="{% static 'assets/img/blog/details/2.jpg' %}" alt="Image"></a>
-                    </div>
-                    <div class="content">
-                      <span>25 May, 2121</span>
-                      <h4><a href="blog-details.html">Lorem ipsum dolor sit conse tetur adipis.</a></h4>
-                    </div>
-                  </div>
-                  <div class="widget-blog-post">
-                    <div class="thumb">
-                      <a href="blog-details.html"><img src="{% static 'assets/img/blog/details/3.jpg' %}" alt="Image"></a>
-                    </div>
-                    <div class="content">
-                      <span>25 May, 2121</span>
-                      <h4><a href="blog-details.html">Mother revolves around her children</a></h4>
-                    </div>
-                  </div>
-                  <div class="widget-blog-post">
-                    <div class="thumb">
-                      <a href="blog-details.html"><img src="{% static 'assets/img/blog/details/4.jpg' %}" alt="Image"></a>
-                    </div>
-                    <div class="content">
-                      <span>25 May, 2121</span>
-                      <h4><a href="blog-details.html">Learn while you grow toys Baby Planet</a></h4>
-                    </div>
-                  </div>
+                {% endfor %}
                 </div>
               </div>
 
@@ -242,10 +192,13 @@
                 <div class="widget-body">
                   <div class="widget-newsletter">
                     <div class="newsletter-form">
-                      <form action="#">
-                        <input class="form-control" type="email" placeholder="Enter Your Email">
+                      <form method="POST" action="">
+                        {% csrf_token %}
+                        <input type="hidden" name="subscribe" value="true">
+                        <input class="form-control" type="email" name="email" placeholder="Enter Your Email" required>
                         <button class="btn btn-theme" type="submit">Subscribe Now</button>
-                      </form>
+                    </form>
+                                   
                     </div>
                   </div>
                 </div>
@@ -257,10 +210,9 @@
                 <div class="widget-body">
                   <div class="widget-tags">
                     <ul>
-                      <li><a href="blog.html">Baby</a></li>
-                      <li><a class="babyfashion" href="blog.html">BabyFashion</a></li>
-                      <li><a class="toy" href="blog.html">Toy</a></li>
-                      <li><a href="blog.html">Baby Toy</a></li>
+                      {% for data in tags %}
+                      <li><a href="javascript:void(0)">{{data.title}}</a></li>
+                      {% endfor %}
                     </ul>
                   </div>
                 </div>
