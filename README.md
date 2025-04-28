@@ -124,7 +124,7 @@ Visit `http://127.0.0.1:8000/` to see ToyGalaxy in action!
 
 | Home Page | Product Details | Blog |
 |:---------:|:---------------:|:----:|
-| ![https://i.ibb.co.com/GQcChkh7/Screenshot-from-2025-04-28-08-04-59.png](#) | ![https://i.ibb.co.com/4nyZwz35/Screenshot-from-2025-04-28-08-05-30.png](#) | ![https://i.ibb.co.com/q3R6Kd6g/Screenshot-from-2025-04-28-08-05-58.png](#) |
+| ![Home Page](https://i.ibb.co/GQcChkh7/Screenshot-from-2025-04-28-08-04-59.png) | ![Product Details](https://i.ibb.co/4nyZwz35/Screenshot-from-2025-04-28-08-05-30.png) | ![Blog](https://i.ibb.co/q3R6Kd6g/Screenshot-from-2025-04-28-08-05-58.png) |
 
 ---
 
