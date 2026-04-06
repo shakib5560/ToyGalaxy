@@ -14,10 +14,15 @@
             <div class="header-info">
               <a href="tel://+00123456789"><i class="fa fa-phone"></i> +8801771-659336</a>
               <a href="mailto://dev.shakib@hotmail.com"><i class="fa fa-envelope"></i>dev.shakib@hotmail.com</a>
-              <a href="{% url "register" %}"><i class="fa fa-user"></i> Account</a>
-              {% comment %} {% url 'login_register' %} {% endcomment %}
-            </div>
-          </div>
+              {% if user.is_authenticated %}
+                <span style="color:#fff;"><i class="fa fa-user"></i> {{ user.username|default:user.email }}</span>
+                <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" style="background:none; border:none; color:inherit; padding: 0 0 0 15px; cursor:pointer;"><i class="fa fa-sign-out"></i> Logout</button>
+                </form>
+              {% else %}
+                <a href="{% url 'login_register' %}"><i class="fa fa-user"></i> Account</a>
+              {% endif %}
         </div>
       </div>
     </div>

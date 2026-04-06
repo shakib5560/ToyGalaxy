@@ -50,22 +50,33 @@
                   <p>Welcome back! Please enter your username and password to login. </p>
                 </div>
                 <div class="login-register-style login-register-pr">
-                  <form action="#" method="post">
+                  <form action="{% url 'login_register' %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="form_type" value="login">
+                    
+                    {% if login_form.non_field_errors %}
+                      <div class="alert alert-danger" style="color: red; margin-bottom: 10px;">
+                        {{ login_form.non_field_errors }}
+                      </div>
+                    {% endif %}
+
                     <div class="login-register-input">
-                      <input type="text" name="user-name" placeholder="Username or email address">
+                      <input type="text" name="username" placeholder="Email address" required>
+                      {{ login_form.username.errors }}
                     </div>
                     <div class="login-register-input">
-                      <input type="password" name="user-password" placeholder="Password">
+                      <input type="password" name="password" placeholder="Password" required>
+                      {{ login_form.password.errors }}
                       <div class="forgot">
-                        <a href="#">Forgot?</a>
+                        <a href="{% url 'password_reset_request' %}">Forgot?</a>
                       </div>
                     </div>
                     <div class="remember-me-btn">
-                      <input type="checkbox">
+                      <input type="checkbox" name="remember_me">
                       <label>Remember me</label>
                     </div>
                     <div class="btn-style-3">
-                      <button class="btn" onclick="window.location.href='my-account.html'" type="button">Login</button>
+                      <button class="btn" type="submit">Login</button>
                     </div>
                   </form>
                 </div>
@@ -78,21 +89,43 @@
                     <p>Create new account today to reap the benefits of a personalized shopping experience. </p>
                 </div>
                 <div class="login-register-style">
-                  <form action="#" method="post">
+                  <form action="{% url 'login_register' %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="form_type" value="register">
+                    
+                    {% if register_form.non_field_errors %}
+                      <div class="alert alert-danger" style="color: red; margin-bottom: 10px;">
+                        {{ register_form.non_field_errors }}
+                      </div>
+                    {% endif %}
+
                     <div class="login-register-input">
-                      <input type="text" name="user-name" placeholder="Username">
+                      <label for="id_username">Username:</label>
+                      <input type="text" name="username" id="id_username" placeholder="Username" required>
+                      <small style="color: red;">{{ register_form.username.errors }}</small>
                     </div>
                     <div class="login-register-input">
-                      <input type="text" name="user-name" placeholder="E-mail address">
+                      <label for="id_email">Email address:</label>
+                      <input type="email" name="email" id="id_email" placeholder="E-mail address" required>
+                      <small style="color: red;">{{ register_form.email.errors }}</small>
                     </div>
                     <div class="login-register-input">
-                      <input type="password" name="user-password" placeholder="Password">
+                      <label for="id_password1">Password:</label>
+                      <input type="password" name="password1" id="id_password1" placeholder="Password" required>
+                      <small style="color: red;">{{ register_form.password1.errors }}</small>
                     </div>
+                    <div class="login-register-input">
+                      <label for="id_password2">Password confirmation:</label>
+                      <input type="password" name="password2" id="id_password2" placeholder="Confirm Password" required>
+                      <small style="color: red;">{{ register_form.password2.errors }}</small>
+                    </div>
+                    <!-- We use manual inputs to keep the theme styles, mapped to Django's fields -->
+
                     <div class="login-register-paragraph">
                       <p>Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our <a href="#">privacy policy.</a></p>
                     </div>
                     <div class="btn-style-3">
-                      <button class="btn" onclick="window.location.href='my-account.html'" type="button">Register</button>
+                      <button class="btn" type="submit">Register</button>
                     </div>
                   </form>
                   <div class="register-benefits">
